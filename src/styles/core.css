@@ -4,16 +4,75 @@
 
 body{
   font-family: 'Open Sans', sans-serif;
+  background-color: #eaeaea;
 }
 
-.App{
-  color: red;
+.PokemonPage{
+  max-width: 1080px;
+  margin: auto;
+  display: flex;
+  /* flex-direction: column; */
 }
 
 .PokemonList{
+  max-width: 50%;
+  flex-grow: 1;
+}
+
+.PokemonTypes{
+  flex-grow: 1;
+  max-width: 50%;
+}
+
+.PokemonList_search{
+  background: rgb(255,255,255);
+  padding: 5px 0;
+}
+
+.PokemonList_search input{
+  background: #eaeaea;
+  border: none;
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px 10px; 
+  color: gray;
+  display: block;
+}
+
+.PokemonList_pokemons{
+  background-color: rgb(249,249,250);
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.PokemonCard{
+  /* border: 1px solid rgb(184, 184, 184);
+  background: rgb(230, 230, 230);
+  min-width: 150px; */
+  /* align-items: center; */
+  display: flex;
+  flex-direction : column;
+  margin: 5px;
+}
+
+.PokemonCard:hover{
+  background: #e6ecff;
+  cursor: pointer;
+}
+
+.PokemonCard_avatar{
+  max-width: 96px;
+  max-height: 96px;
+  border: 1px solid rgb(216, 216, 216);
+}
+
+.PokemonCard_name{
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
 }
 
 .PokemonStats_container div{
@@ -36,8 +95,5 @@ body{
   list-style-type: none;
   text-align: left;
   padding: 5px 30px;
-
-  &:hover{
-    background-color: rgb(235, 235, 235)
-  }
 }
+
