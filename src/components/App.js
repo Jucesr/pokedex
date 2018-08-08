@@ -1,5 +1,9 @@
 import React from 'react'
+import {Provider} from 'react-redux';
+import store from '../store/configureStore';
+
 import PokemonPage from '../pages/pokemon/PokemonPage'
+import '../styles/core.css'
 
 class App extends React.Component {
 
@@ -10,7 +14,9 @@ class App extends React.Component {
   render(){
 
     return (
-      <PokemonPage/>   
+      <Provider store={store}>
+        <PokemonPage/> 
+      </Provider>   
     )
   };
 }

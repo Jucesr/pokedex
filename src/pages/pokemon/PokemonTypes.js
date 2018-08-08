@@ -41,7 +41,7 @@ export default class PokemonTypes extends React.Component {
             <div className="box">            
                     <div className="box_title">
                         <div className="box_margin">
-                            <strong>Filter by type</strong>
+                            <strong>Filter options</strong>
                         </div>
                     </div>
                     <div className="box_body">
@@ -49,14 +49,24 @@ export default class PokemonTypes extends React.Component {
                             {props.loading ? (
                                 <img src='../assets/loading.gif'></img>
                             ):(
-                                <Select 
-                                    styles={customStyles}
-                                    options={[{value: 'all', label: 'all'}, ...options]}
-                                    isMulti={true}
-                                    isSearchable={true}
-                                    defaultValue={{value: 'all', label: 'all'}}
-                                    // isLoading={props.loading}
-                                /> 
+                                <React.Fragment> 
+                                    <Select 
+                                        styles={customStyles}
+                                        options={[{value: 'all', label: 'all'}, ...options]}
+                                        isMulti={true}
+                                        isSearchable={true}
+                                        defaultValue={{value: 'all', label: 'all'}}
+                                        // isLoading={props.loading}
+                                    /> 
+                                    <input
+                                        className="Filter_name"
+                                        value={props.filter_name}
+                                        onChange={props.onFilterChange} 
+                                        placeholder="Search a pokemon" 
+                                        type="text"
+                                    />  
+                                </React.Fragment>
+                                
                             )}
                         </div>
                     </div>

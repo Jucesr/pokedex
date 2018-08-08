@@ -1,18 +1,15 @@
 import React from 'react'
 import Card from './Card'
 
-export const PokemonList = (props) => {
+export const List = (props) => {
     return (
-        <div className="PokemonList">
-            <div className="PokemonList_search">
-                <input
-                    value={props.filter_name}
-                    onChange={props.onFilterChange} 
-                    placeholder="Search a pokemon" 
-                    type="text"
-                />
+        <div className="box">
+            <div className="box_title">
+                <div className="box_margin">
+                    <strong>Pokemon list</strong>               
+                </div>
             </div>
-            <div className="PokemonList_pokemons">
+            <div className="List_pokemons">
                 {props.loading ? (
                     <img src='../assets/loading.gif'></img>
                 ):(
@@ -21,8 +18,8 @@ export const PokemonList = (props) => {
                             key={index}
                             id={pokemon.id} 
                             name={pokemon.name} 
-                            //picture="https://fakeimg.pl/96/"
-                            picture={pokemon.sprites.front_default}
+                            picture="https://fakeimg.pl/96/"
+                            // picture={pokemon.sprites.front_default}
                             stats={pokemon.stats} 
                             onCardClick={props.onCardClick}
                         /> 
@@ -42,4 +39,4 @@ export const PokemonList = (props) => {
     )
 }
 
-export default PokemonList
+export default List

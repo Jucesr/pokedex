@@ -1,5 +1,5 @@
 import React from 'react'
-import PokemonList from './PokemonList'
+import List from './List'
 import PokemonTypes from './PokemonTypes'
 import {Stats} from './Stats'
 import {BasicInfo} from './BasicInfo'
@@ -92,22 +92,28 @@ export default class PokemonPage extends React.Component {
         
         return (
           <div className="PokemonPage">
-            <PokemonList
-              filter_name={filter_name}
-              onFilterChange={this.onFilterChange}
-              pokemons={this.filterByName()}
-              onCardClick={this.selectPokemon}
-              loading={loading}
-            />
-            <div className="PokemonPage_rigth">
+            <div className='PokemonPage_left'>
               <PokemonTypes
                 types={types}
                 loading={loadingt}
+                filter_name={filter_name}
+                onFilterChange={this.onFilterChange}
               />
+
+              <List  
+                pokemons={this.filterByName()}
+                onCardClick={this.selectPokemon}
+                loading={loading}
+              />
+            </div>
+            
+            <div className="PokemonPage_rigth">
+              
 
               {!loading && 
                 <BasicInfo
                   avatar={pokemons[selected_pokemon].sprites.front_default}
+                  avatar="https://fakeimg.pl/96/"
                   name={pokemons[selected_pokemon].name}
                   base_experience={pokemons[selected_pokemon].base_experience}
                   weight={pokemons[selected_pokemon].weight}

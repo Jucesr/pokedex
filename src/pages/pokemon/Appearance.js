@@ -23,7 +23,8 @@ export const Appearance = (props) => {
                             return (
                                 <div className="Apperance_item" key={index}>
                                     <div>
-                                        <img src={props.sprites[key]}/>
+                                        {/* <img src={props.sprites[key]}/> */}
+                                        <img src="https://fakeimg.pl/96/"/>
                                         <p> {capitalize(replaceAll(key, '_', ' '))} </p>
                                     </div> 
                                       

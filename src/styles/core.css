@@ -8,6 +8,12 @@ body{
   background-color: #eaeaea;
 }
 
+.box{
+  max-width: 100%;
+  margin: 0 5px 10px 5px;
+  background: rgb(255,255,255);
+}
+
 .box_margin{
   width: 90%;
   margin: 0 auto;
@@ -28,7 +34,10 @@ body{
   max-width: 1080px;
   margin: auto;
   display: flex;
-  
+}
+
+.PokemonPage_left{
+  width: 50%;
 }
 
 .PokemonPage_rigth{
@@ -36,27 +45,10 @@ body{
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  max-width: 50%;
+  width: 50%;
 }
 
-.PokemonList{
- 
-  max-width: 50%;
-  flex-grow: 1;
-}
-
-.box{
-  max-width: 100%;
-  margin: 0 10px 10px 10px;
-  background: rgb(255,255,255);
-}
-
-.PokemonList_search{
-  background: rgb(255,255,255);
-  padding: 5px 9px;
-}
-
-.PokemonList_search input{
+.Filter_name{
   background: #eaeaea;
   border: none;
   width: 100%;
@@ -65,9 +57,10 @@ body{
   color: gray;
   display: block;
   font-size: 16px;
+  margin: 10px 0;
 }
 
-.PokemonList_pokemons{
+.List_pokemons{
   background-color: rgb(249,249,250);
   display: flex;
   flex-direction: row;

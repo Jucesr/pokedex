@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/src\\components\\PokemonList.js"
+            "program": "${workspaceFolder}/src\\components\\List.js"
         }
     ]
 }
