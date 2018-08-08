@@ -1,22 +1,30 @@
 import React from 'react'
-import PokemonCard from './PokemonCard'
+import Card from './Card'
 
 export const PokemonList = (props) => {
     return (
         <div className="PokemonList">
             <div className="PokemonList_search">
-                <input placeholder="Search a pokemon" type="text"/>
+                <input
+                    value={props.filter_name}
+                    onChange={props.onFilterChange} 
+                    placeholder="Search a pokemon" 
+                    type="text"
+                />
             </div>
             <div className="PokemonList_pokemons">
                 {props.loading ? (
                     <img src='../assets/loading.gif'></img>
                 ):(
                     props.pokemons.map( (pokemon, index) => (
-                        <PokemonCard 
-                        key={index} 
-                        name={pokemon.name} 
-                        picture={pokemon.sprites.front_default} //"https://fakeimg.pl/96/"  
-                        stats={pokemon.stats} 
+                        <Card 
+                            key={index}
+                            id={pokemon.id} 
+                            name={pokemon.name} 
+                            //picture="https://fakeimg.pl/96/"
+                            picture={pokemon.sprites.front_default}
+                            stats={pokemon.stats} 
+                            onCardClick={props.onCardClick}
                         /> 
                         )
                     )

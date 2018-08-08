@@ -1,4 +1,6 @@
 import React from 'react'
+import {Radar} from 'react-chartjs-2';
+
 class PokemonStats extends React.Component {
 
   constructor(props){
@@ -8,6 +10,24 @@ class PokemonStats extends React.Component {
 
   render(){
     let props = this.props
+    let chart_data = {
+      labels: [],
+      datasets: [{
+          data: [],
+          fillColor: "rgba(220,0,0,0.5)",
+          strokeColor: "rgba(220,220,220,1)",
+          pointColor: "rgba(220,220,220,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)"
+      }]
+    } 
+    
+    props.stats.forEach(stat => {
+      chart_data.labels.push(stat.stat.name)
+      chart_data.datasets[0].data.push(stat.base_stat)
+    })
+
     return (
       <div
           style={{
@@ -23,6 +43,7 @@ class PokemonStats extends React.Component {
         >
         <div className="PokemonStats_container">
           <div>Stats</div>
+          <RadarChart.Radar data={chart_data}/>
           {props.stats.map((stat, index) => (
             <ul key={index}>
               <li><strong>{`${stat.stat.name}: `}</strong>{`${stat.base_stat}`}</li>

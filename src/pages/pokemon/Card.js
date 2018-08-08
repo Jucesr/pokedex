@@ -14,25 +14,28 @@ class PokemonCard extends React.Component {
   }
 
   render(){
-    const {name, picture, stats} = this.props;
+    const {id, name, picture, stats, onCardClick} = this.props;
     return (
       <div
         className="PokemonCard"
-        onMouseLeave={() => {
-          this.setState((prevState) => ({
-            show_stats: false
-          }))
+        onClick={() => {
+          onCardClick(id);
         }}
-        onMouseEnter={e => {
-          let x = e.pageX
-          let y = e.pageY
-          this.setState((prevState) => ({
-            show_stats: true,
-            x,
-            y
-          }))
+        // onMouseLeave={() => {
+        //   this.setState((prevState) => ({
+        //     show_stats: false
+        //   }))
+        // }}
+        // onMouseEnter={e => {
+        //   let x = e.pageX
+        //   let y = e.pageY
+        //   this.setState((prevState) => ({
+        //     show_stats: true,
+        //     x,
+        //     y
+        //   }))
 
-        }}
+        // }}
       >
         <div className="PokemonCard_avatar" >
           <img src={picture}></img>
