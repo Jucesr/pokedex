@@ -7,13 +7,15 @@ import thunk from 'redux-thunk'
 
 //Reducers
 import pokemonsReducer from './reducers/pokemons'
+import typesReducer from './reducers/types'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const persistedState = loadState()
 
 const store = createStore(
     combineReducers({
-        pokemons: pokemonsReducer
+        pokemons: pokemonsReducer,
+        types: typesReducer
     }),
     persistedState,
     composeEnhancers(applyMiddleware(thunk), applyMiddleware(callAPI))

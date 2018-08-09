@@ -1,24 +1,25 @@
 import { actions } from '../actions/pokemons';
 
 const initialState = {
-  items: {},
+  items: [],
   error: null,
-  isFetching: false
+  isFetching: false,
+  lastFetched: 0
 }
 
 export default (state = initialState, action = {}) => {
-  const { error, _id, type, response } = action;
+  const { error, payload, type, response } = action;
 
   switch (type) {
     
-    case actions.LOAD_POKEMON_REQUEST: {
+    case actions.LOAD_TYPES_REQUEST: {
       return {
         ...state,
         isFetching: true
       };
     }
 
-    case actions.LOAD_POKEMON_FAILURE: {
+    case actions.LOAD_TYPES_FAILURE: {
       return {
         ...state,
         error,
@@ -26,16 +27,13 @@ export default (state = initialState, action = {}) => {
       };
     }
 
-    case actions.LOAD_POKEMON_SUCCESS: {
+    case actions.LOAD_TYPES_SUCCESS: {
       return {
         ...state,
-        // items: state.items.concat(response),
-        items: {
-          ...state.items,
-          [`${_id}`]: {...response, lastFetched: Date.now()}
-        },
+        items: response,
         error: null,
-        isFetching: false
+        isFetching: false,
+        lastFetched: Date.now()
       };
     }
 

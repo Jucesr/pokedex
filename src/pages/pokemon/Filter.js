@@ -51,17 +51,17 @@ export default class Filter extends React.Component {
                             <React.Fragment> 
                                 <Select 
                                     styles={customStyles}
-                                    options={[{value: 'all', label: 'all'}, ...options]}
+                                    options={options}
                                     isMulti={true}
                                     isSearchable={true}
-                                    defaultValue={{value: 'all', label: 'all'}}
                                     placeholder="By type"
+                                    onChange={props.onTypeFilterChange}
                                     // isLoading={props.loading}
                                 /> 
                                 <input
                                     className="Filter_name"
                                     value={props.filter_name}
-                                    onChange={props.onFilterChange} 
+                                    onChange={props.onNameFilterChange} 
                                     placeholder="By name " 
                                     type="text"
                                 />  
