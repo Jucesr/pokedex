@@ -1,81 +1,42 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import List from './List'
-import PokemonTypes from './PokemonTypes'
+import Filter from './Filter'
 import {Stats} from './Stats'
 import {BasicInfo} from './BasicInfo'
 import {Appearance} from './Appearance'
-import cache_pokemon_types from '../../cachedata/types'
-import cache_pokemons from '../../cachedata/pokemons_min'
 
-export default class PokemonPage extends React.Component {
+import {loadPokemons} from '../../store/actions/pokemons'
+
+class PokemonPage extends React.Component {
 
     constructor(props){
         super(props);
+
         this.state = {
           filter_name: '',
-          pokemons: [],
-          selected_pokemon: 0,
+          selected_pokemon_id: 0,
           types: [],
-          loading: true,
           loadingt: true
         }
       }
 
       componentDidMount = () =>{
-    
-        this.fetchPokemons(50)
-        this.fetchTypes()
+        
+        this.props.loadPokemons()
+        
       }
 
       selectPokemon = (pokemon_id) => {
         this.setState(prevState => ({
-          selected_pokemon: pokemon_id - 1 
+          selected_pokemon_id: pokemon_id - 1 
         }))
-      }
-    
-      fetchPokemons = (number_of_pokemons_to_fetch) => {
-    
-        // let list_of_pokemons = []
-        // for (var i = 1; i < number_of_pokemons_to_fetch + 1; i++) {
-        //   list_of_pokemons.push(Math.floor(Math.random() * 100) + 1)
-        // }
-        // let proms = list_of_pokemons.map( id => {
-        //   return fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`).then(response => response.json())
-        // })
-    
-        // Promise.all(proms).then((values) => {
-        //   this.setState((prevState) => ({
-        //     pokemons: prevState.pokemons.concat(values),
-        //     loading: false
-        //   }))
-        // });
-
-        this.setState((prevState) => ({
-          pokemons: prevState.pokemons.concat(cache_pokemons.concat(cache_pokemons)),
-          loading: false
-        }))
-      }
-
-      fetchTypes = () => {
-        
-        // fetch(`https://pokeapi.co/api/v2/type/`)
-        //   .then(response => response.json())
-        //   .then((values) => {
-        //     this.setState((prevState) => ({
-        //       types: prevState.types.concat(values.results),
-        //       loadingt: false
-        //     }))
-        //   })
-
-        this.setState((prevState) => ({
-          types: prevState.types.concat(cache_pokemon_types.results),
-          loadingt: false
-        }))
-        
       }
 
       filterByName = () => {
-        return this.state.pokemons.filter(pokemon => pokemon.name.includes(this.state.filter_name))
+        const {pokemons} = this.props
+        return pokemons.content.filter(pokemon => pokemon.name.includes(this.state.filter_name))
       } 
 
       onFilterChange = e => {
@@ -88,59 +49,80 @@ export default class PokemonPage extends React.Component {
       
 
     render(){
-        const {filter_name, loading, types, loadingt, selected_pokemon, pokemons} = this.state
+        const {filter_name, types, loadingt, selected_pokemon_id} = this.state
+        const {pokemons} = this.props
+
+        const selected_pokemon = pokemons.content[selected_pokemon_id]
+        const renderCondition = pokemons.content.length > 0 && !pokemons.isFetching
         
-        return (
-          <div className="PokemonPage">
-            <div className='PokemonPage_left'>
-              <PokemonTypes
-                types={types}
-                loading={loadingt}
-                filter_name={filter_name}
-                onFilterChange={this.onFilterChange}
-              />
-
-              <List  
-                pokemons={this.filterByName()}
-                onCardClick={this.selectPokemon}
-                loading={loading}
-              />
-            </div>
-            
-            <div className="PokemonPage_rigth">
-              
-
-              {!loading && 
-                <BasicInfo
-                  avatar={pokemons[selected_pokemon].sprites.front_default}
-                  avatar="https://fakeimg.pl/96/"
-                  name={pokemons[selected_pokemon].name}
-                  base_experience={pokemons[selected_pokemon].base_experience}
-                  weight={pokemons[selected_pokemon].weight}
-                  height={pokemons[selected_pokemon].height}
-                  types={pokemons[selected_pokemon].types.map(t => t.type.name)}
-                />  
-              }
-
-              {!loading && 
-                <Stats
-                  stats={pokemons[selected_pokemon].stats}
+        if(renderCondition){
+          return (
+            <div className="PokemonPage">
+              <div className='PokemonPage_left'>
+                <Filter
+                  types={types}
+                  filter_name={filter_name}
+                  onFilterChange={this.onFilterChange}
                 />
-              }
-
-              {!loading && 
-                <Appearance
-                  sprites={pokemons[selected_pokemon].sprites}
+  
+                <List  
+                  pokemons={this.filterByName()}
+                  onCardClick={this.selectPokemon}
+                  loading={pokemons.isFetching}
                 />
-              }
-
-
+              </div>
               
-
+              <div className="PokemonPage_rigth">
+                
+  
+                {renderCondition && 
+                  <BasicInfo
+                    // avatar={selected_pokemon.sprites.front_default}
+                    avatar="https://fakeimg.pl/96/"
+                    name={selected_pokemon.name}
+                    base_experience={selected_pokemon.base_experience}
+                    weight={selected_pokemon.weight}
+                    height={selected_pokemon.height}
+                    types={selected_pokemon.types.map(t => t.type.name)}
+                  />  
+                }
+  
+                {renderCondition && 
+                  <Stats
+                    stats={selected_pokemon.stats}
+                  />
+                }
+  
+                {renderCondition && 
+                  <Appearance
+                    sprites={selected_pokemon.sprites}
+                  />
+                }
+  
+  
+                
+  
+              </div>
+              
             </div>
-            
-          </div>
-            
-        )
+              
+          )
+        }else{
+          return <div className="Loading"> <img src='../assets/loading.gif'></img> </div>
+        }
+        
     }
 }
+
+const mapStateToProps = state => ({
+  pokemons: state.pokemons
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadPokemons: () => dispatch(loadPokemons())
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PokemonPage)

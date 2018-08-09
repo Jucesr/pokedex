@@ -23,19 +23,21 @@ export const BasicInfo = (props) => {
                             
                         </div>
                         <div>
-                            <table className="BasicInfo_stat_table"> 
-                                <tr>
-                                    <td >Experience </td>
-                                    <td>{props.base_experience} xp</td>
-                                </tr>
-                                <tr>
-                                    <td >Weight </td>
-                                    <td>{props.weight} lbs</td>
-                                </tr>
-                                <tr>
-                                    <td >Height </td>
-                                    <td>{props.height} "</td>
-                                </tr>
+                            <table className="BasicInfo_stat_table">
+                                <tbody>  
+                                    <tr>
+                                        <td >Experience </td>
+                                        <td>{props.base_experience} xp</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Weight </td>
+                                        <td>{props.weight} lbs</td>
+                                    </tr>
+                                    <tr>
+                                        <td >Height </td>
+                                        <td>{props.height} "</td>
+                                    </tr>
+                                </tbody> 
                             </table>
                         </div>
                         

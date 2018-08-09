@@ -13,8 +13,8 @@ export const loadState =  () => {
 export const saveState = (state) => {
     try{
         const serializedState = JSON.stringify(state)
-        localStorage('pokedex_state', serializedState)
+        localStorage.setItem('pokedex_state', serializedState)
     } catch (err){
-        console.log(console.error())
+        console.log(err)
     }
 }

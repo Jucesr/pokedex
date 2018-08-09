@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 
-export default class PokemonTypes extends React.Component {
+export default class Filter extends React.Component {
 
     constructor(props){
         super(props)
@@ -20,7 +20,8 @@ export default class PokemonTypes extends React.Component {
                 ...styles, 
                 backgroundColor: '#eaeaea',
 
-                padding: '10px 10px',
+                // padding: '10px 10px',
+                font_size: '16px',
                 border: 'none'
             }),
             multiValueLabel: (styles, { data }) => ({
@@ -46,28 +47,27 @@ export default class PokemonTypes extends React.Component {
                     </div>
                     <div className="box_body">
                         <div className="box_margin">
-                            {props.loading ? (
-                                <img src='../assets/loading.gif'></img>
-                            ):(
-                                <React.Fragment> 
-                                    <Select 
-                                        styles={customStyles}
-                                        options={[{value: 'all', label: 'all'}, ...options]}
-                                        isMulti={true}
-                                        isSearchable={true}
-                                        defaultValue={{value: 'all', label: 'all'}}
-                                        // isLoading={props.loading}
-                                    /> 
-                                    <input
-                                        className="Filter_name"
-                                        value={props.filter_name}
-                                        onChange={props.onFilterChange} 
-                                        placeholder="Search a pokemon" 
-                                        type="text"
-                                    />  
-                                </React.Fragment>
+                            
+                            <React.Fragment> 
+                                <Select 
+                                    styles={customStyles}
+                                    options={[{value: 'all', label: 'all'}, ...options]}
+                                    isMulti={true}
+                                    isSearchable={true}
+                                    defaultValue={{value: 'all', label: 'all'}}
+                                    placeholder="By type"
+                                    // isLoading={props.loading}
+                                /> 
+                                <input
+                                    className="Filter_name"
+                                    value={props.filter_name}
+                                    onChange={props.onFilterChange} 
+                                    placeholder="By name " 
+                                    type="text"
+                                />  
+                            </React.Fragment>
                                 
-                            )}
+                            
                         </div>
                     </div>
                     

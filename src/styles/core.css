@@ -30,6 +30,13 @@ body{
   background-color: rgb(249,249,250);
 }
 
+.Loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .PokemonPage{
   max-width: 1080px;
   margin: auto;
@@ -57,6 +64,7 @@ body{
   color: gray;
   display: block;
   font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
   margin: 10px 0;
 }
 
