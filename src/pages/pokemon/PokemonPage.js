@@ -7,8 +7,9 @@ import Filter from './Filter'
 import {Stats} from './Stats'
 import {BasicInfo} from './BasicInfo'
 import {Appearance} from './Appearance'
+import { EvolutionChain } from "./EvolutionChain";
 
-import {loadPokemon, loadPokemonTypes} from '../../store/actions/pokemons'
+import {loadPokemons, loadPokemonTypes} from '../../store/actions/pokemons'
 
 class PokemonPage extends React.Component {
 
@@ -23,10 +24,8 @@ class PokemonPage extends React.Component {
   }
 
   componentDidMount = () =>{
-    for (let index = 0; index < 10; index++) {
-      this.props.loadPokemon(index, index * 1000)
-      
-    }
+
+    this.props.loadPokemons()
     this.props.loadPokemonTypes()
   }
 
@@ -76,17 +75,46 @@ class PokemonPage extends React.Component {
     }))
   }
 
+  urlToId = (url) => {
+    let aux_arr = url.split('/') 
+    return aux_arr[aux_arr.length - 2] 
+  }
+
+  getEvolutionChain = (selected_pokemon) => {
+    //TODO: Validate that species and evolution has been fetched before allowing the user to change pokemon
+    const {pokemons, pokemon_species, evolution_chains} = this.props
+    let pokemon_specie = pokemon_species.items[this.urlToId(selected_pokemon.species.url)]
+    if(!pokemon_specie)
+      return []
+    let evolution_chain = evolution_chains.items[this.urlToId(pokemon_specie.evolution_chain.url)]
+    if(!evolution_chain)
+      return []
+    
+    let pokemon_evolution = evolution_chain.chain.map(pe => pokemons.items[pe])
+
+    return pokemon_evolution
+  }
+
   render(){
     const {filter_name, selected_pokemon_id} = this.state
-    const {pokemons, types} = this.props
+    const {pokemons, types, loadPokemons, pokemon_species, evolution_chains} = this.props
 
     //Transform object to array
     const pokemon_array = Object.values(pokemons.items)
+    const pokemon_species_array = Object.values(pokemon_species.items)
+    const evolution_chains_array = Object.values(evolution_chains.items)
 
-    const selected_pokemon = pokemon_array[selected_pokemon_id]
-    const renderCondition = pokemon_array.length > 0 && types.items.length > 0
     
+    const renderCondition = pokemon_array.length > 0 && types.items.length > 0 && pokemon_species_array.length > 0 && evolution_chains_array.length > 0
+    
+
     if(renderCondition){
+
+      const selected_pokemon = pokemon_array[selected_pokemon_id]
+      const pokemon_evolution = this.getEvolutionChain(selected_pokemon)
+      let pokemon_specie = pokemon_species.items[this.urlToId(selected_pokemon.species.url)]
+      const description = pokemon_specie && pokemon_specie.description  
+
       return (
         <div className="PokemonPage">
           <div className='PokemonPage_left'>
@@ -101,6 +129,7 @@ class PokemonPage extends React.Component {
               pokemons={this.getVisiblePokemons()}
               onCardClick={this.selectPokemon}
               loading={pokemons.isFetching}
+              loadPokemons={loadPokemons}
             />
           </div>
 
@@ -113,10 +142,17 @@ class PokemonPage extends React.Component {
                 weight={selected_pokemon.weight}
                 height={selected_pokemon.height}
                 types={selected_pokemon.types.map(t => t.type.name)}
+                description={description}
               />  
             
               <Stats
                 stats={selected_pokemon.stats}
+              />
+
+              <EvolutionChain
+                onCardClick={this.selectPokemon}
+                pokemons={pokemon_evolution}
+
               />
             
               <Appearance
@@ -134,11 +170,14 @@ class PokemonPage extends React.Component {
 
 const mapStateToProps = state => ({
   pokemons: state.pokemons,
+  pokemon_species: state.pokemons_species,
+  evolution_chains: state.evolution_chains,
   types: state.types
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadPokemon: (id, time) => dispatch(loadPokemon(id, time)),
+  loadPokemon: (id) => dispatch(loadPokemon(id)),
+  loadPokemons: (how_many) => dispatch(loadPokemons(how_many)),
   loadPokemonTypes: () => dispatch(loadPokemonTypes())
 })
 

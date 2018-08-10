@@ -1,19 +1,19 @@
 const callAPIMiddleware = ({ dispatch, getState }) => {
     return next => action => {
       const {
-        types,
+        type,
         callAPI,
         shouldCallAPI = () => true,
         payload = {}
       } = action
   
-      if (!types) {
+      if (!callAPI) {
         // Normal action: pass it on
         return next(action)
       }
 
-      if ( !Array.isArray(types) || types.length !== 3 || !types.every(type => typeof type === 'string')) {
-        throw new Error('Expected an array of three string types.')
+      if ( typeof type != 'string') {
+        throw new Error('Expected type to be a string.')
       }
   
       if (typeof callAPI !== 'function') {
@@ -24,25 +24,23 @@ const callAPIMiddleware = ({ dispatch, getState }) => {
         return
       }
   
-      const [requestType, successType, failureType] = types
-
       dispatch({
         ...payload,
-        type: requestType
+        type: `${type}_REQUEST`
       })
       
       return callAPI().then(
-        response =>
+        response => 
             dispatch({
-                ...payload,
-                response,
-                type: successType
-            })
+              ...payload,
+              response,
+              type: `${type}_SUCCESS`
+            }) 
         , error =>
             dispatch({
                 ...payload,
                 error,
-                type: failureType
+                type: `${type}_FAILURE`
             })
       )
     }

@@ -128,10 +128,20 @@ body{
 
 .BasicInfo_container{
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   
 }
-.BasicInfo_container div{
+
+.BasicInfo_container p {
+  font-size: 14px;
+}
+
+.BasicInfo_box01{
+  display: flex;
+  justify-content: space-between;
+}
+
+.BasicInfo_box01 div{
   min-width: 50%;
 }
 
@@ -184,3 +194,33 @@ body{
   color: gray; 
 }
 
+.EvolutionChain_container{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.EvolutionChain_notfound{
+  align-content: center;
+  text-align: center;
+}
+
+.EvolutionChain_item{
+  flex-grow: 1;
+  max-width: 25%;
+}
+
+.EvolutionChain_item div{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.EvolutionChain_item p{
+  margin: 0;
+  min-height: 40px;
+  word-wrap: break-word;
+  font-size: 13px;
+  color: gray; 
+}

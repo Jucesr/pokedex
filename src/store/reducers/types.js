@@ -1,5 +1,3 @@
-import { actions } from '../actions/pokemons';
-
 const initialState = {
   items: [],
   error: null,
@@ -12,14 +10,14 @@ export default (state = initialState, action = {}) => {
 
   switch (type) {
     
-    case actions.LOAD_TYPES_REQUEST: {
+    case 'LOAD_TYPE_REQUEST': {
       return {
         ...state,
         isFetching: true
       };
     }
 
-    case actions.LOAD_TYPES_FAILURE: {
+    case 'LOAD_TYPE_FAILURE': {
       return {
         ...state,
         error,
@@ -27,9 +25,10 @@ export default (state = initialState, action = {}) => {
       };
     }
 
-    case actions.LOAD_TYPES_SUCCESS: {
+    case 'LOAD_TYPE_SUCCESS': {
       return {
         ...state,
+        ...payload,
         items: response,
         error: null,
         isFetching: false,

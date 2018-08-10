@@ -10,9 +10,7 @@ export const List = (props) => {
                 </div>
             </div>
             <div className="List_pokemons">
-                {props.loading ? (
-                    <img src='../assets/loading.gif'></img>
-                ):(
+                {
                     props.pokemons.map( (pokemon, index) => (
                         <Card 
                             key={index}
@@ -25,16 +23,16 @@ export const List = (props) => {
                         /> 
                         )
                     )
-                )}
+                }
+                {props.loading && 
+                    <img src='../assets/loading.gif'></img>
+                }
             </div>
 
-            {/* {!props.loading  && <button onClick={e => {
-                this.setState((prevState) => ({
-                loading: true
-                }))
-                this.fetchPokemons(10);
-            }}>Load more!(10)
-            </button>} */}
+            {!props.loading  && <button onClick={e => {
+                props.loadPokemons(5);
+            }}>Load more!(5)
+            </button>}
         </div>
     )
 }

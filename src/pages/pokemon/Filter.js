@@ -54,7 +54,7 @@ export default class Filter extends React.Component {
                                     options={options}
                                     isMulti={true}
                                     isSearchable={true}
-                                    placeholder="By type"
+                                    placeholder="By type (OR)"
                                     onChange={props.onTypeFilterChange}
                                     // isLoading={props.loading}
                                 /> 
