@@ -13,5 +13,5 @@ app.get('*', (req, res) => {
 
 
 app.listen(port, ()=> {
-  console.log(`Server runing in ${port}`);
+  console.log(`Server runing in  ${port}`);
 });
