@@ -17,7 +17,7 @@ See also the list of [dependencies](https://github.com/Jucesr/pokedex/blob/maste
 
 ## Authors
 
-* **Julio Ojeda** - *Front-end*, *UI Design* - [Jucesr](https://github.com/Jucesr/)
+* **Julio Ojeda** - *Front-end*, *UI Design* - [Contact](https://www.linkedin.com/in/julio-ojeda-9640a9113/)
 
 ## License
 
