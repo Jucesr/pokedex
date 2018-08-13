@@ -10,7 +10,7 @@ export const Footer = (props) => {
                     
                 </div>
                 <div className='Footer_develop'>
-                    Developed by <a target="_blank" href="https://github.com/Jucesr"><strong>Julio Ojeda</strong></a> 
+                    Developed by <a target="_blank" href="https://github.com/Jucesr/pokedex"><strong>Julio Ojeda</strong></a> 
                 </div>
             </div>
             
