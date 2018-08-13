@@ -1,8 +1,3 @@
-import cache_pokemon_types from '../../cachedata/types'
-import cache_pokemon_species from '../../cachedata/pokemon_species'
-import cache_evolution_chains from '../../cachedata/evolution_chains'
-import cache_abilities from '../../cachedata/abilities'
-import cache_pokemons from '../../cachedata/pokemons_min'
 import isEmpty from 'lodash/isEmpty'
 import pick from 'lodash/pick'
 import { urlToId } from "../../utils/index"
@@ -21,6 +16,10 @@ const shouldCallAPI = (stateProperty, _id) => {
 
   }
 }
+
+export const cleanError = () => ({
+  type: 'CLEAN_ERROR'
+})
 
 export const loadPokemons = (how_many = 0) => {
 
@@ -305,15 +304,15 @@ export const loadPokemonTypes = () => {
     },
     callAPI: () => {
       return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve(cache_pokemon_types.results)
-        }, 1000);
-          
+
+        fetch(`https://pokeapi.co/api/v2/type/`)
+          .then(response => response.json())
+          .then(response => {
+            resolve(response.results) 
+          })  
       })
 
-      //TODO: Add fetch to Pokemon API.
-      // fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-      //   .then(response => response.json())
+      
     },
     payload: {  }
   }

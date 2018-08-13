@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import intersection from 'lodash/intersection'
 import pick from 'lodash/pick'
+import isEmpty from 'lodash/isEmpty'
 import { urlToId } from "../../utils/index";
 
+import {Modal} from './components/Modal';
 import List from './components/List'
 import Filter from './components/Filter'
 import {Stats} from './components/Stats'
@@ -12,7 +14,7 @@ import {Appearance} from './components/Appearance'
 import { EvolutionChain } from "./components/EvolutionChain";
 import { Ability } from "./components/Ability";
 
-import {loadPokemonFullData, loadPokemons, loadPokemonTypes} from '../../store/actions/pokemons'
+import {loadPokemonFullData, loadPokemons, loadPokemonTypes, cleanError} from '../../store/actions/pokemons'
 
 class PokemonPage extends React.Component {
 
@@ -20,6 +22,8 @@ class PokemonPage extends React.Component {
     super(props);
 
     this.state = {
+      modal_message: undefined,
+      showModal: false,
       filter_name: '',
       filter_type: [],
       selected_pokemon_id: 1
@@ -38,6 +42,9 @@ class PokemonPage extends React.Component {
     value = value && value.toLowerCase() 
     if(value){
       this.props.loadPokemonFullData(value)
+      this.setState(prevState => ({
+        filter_name: value
+      }))
     }else{
       console.log('error');      
     }   
@@ -108,17 +115,13 @@ class PokemonPage extends React.Component {
 
   render(){
     const {filter_name, selected_pokemon_id} = this.state
-    const {pokemons, types, loadPokemons, pokemon_species, evolution_chains, abilities} = this.props
-
-    //Transform object to array
-    const pokemon_array = Object.values(pokemons.items)
-    const pokemon_species_array = Object.values(pokemon_species.items)
-    const evolution_chains_array = Object.values(evolution_chains.items)
-    const abilities_array = Object.values(abilities.items)
-
+    const {pokemons, types, loadPokemons, pokemon_species, evolution_chains, abilities, cleanError} = this.props
     
     const renderCondition = 
-      pokemon_array.length > 0 && types.items.length > 0 && pokemon_species_array.length > 0 && evolution_chains_array.length > 0 && abilities_array.length > 0
+      !isEmpty(pokemons.items) && 
+      !isEmpty(pokemon_species.items) && 
+      !isEmpty(evolution_chains.items) && 
+      !isEmpty(abilities.items)
     
 
     if(renderCondition){
@@ -177,7 +180,19 @@ class PokemonPage extends React.Component {
               <Appearance
                 sprites={selected_pokemon.sprites}
               /> 
-          </div>               
+          </div> 
+          
+          <Modal
+            isOpen={!!pokemons.error}
+            category={'error'}
+            title={pokemons.error || ''}
+            closeModal={() => {
+              cleanError()
+              this.setState(prevState => ({
+                filter_name: ''
+              }))
+            }}
+          />              
         </div>    
       )
     }else{
@@ -199,7 +214,8 @@ const mapDispatchToProps = dispatch => ({
   loadPokemon: (id) => dispatch(loadPokemon(id)),
   loadPokemons: (how_many) => dispatch(loadPokemons(how_many)),
   loadPokemonTypes: () => dispatch(loadPokemonTypes()),
-  loadPokemonFullData: (id) => dispatch(loadPokemonFullData(id))
+  loadPokemonFullData: (id) => dispatch(loadPokemonFullData(id)),
+  cleanError: () => dispatch(cleanError())
 })
 
 export default connect(

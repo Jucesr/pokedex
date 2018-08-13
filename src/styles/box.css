@@ -1,0 +1,21 @@
+.box{
+    max-width: 100%;
+    margin: 0 5px 10px 5px;
+    background: rgb(255,255,255);
+  }
+  
+  .box_margin{
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .box_title{
+    font-family: 'Helvetica';
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(240,240,240)
+  }
+  
+  .box_body{
+    padding: 10px 0 ;
+    background-color: rgb(249,249,250);
+  }

@@ -6,33 +6,12 @@ body{
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   background-color: #eaeaea;
+  margin: 0;
 }
 
 .gif_loading_item{
   width: 96px;
   height: 96px;
-}
-
-.box{
-  max-width: 100%;
-  margin: 0 5px 10px 5px;
-  background: rgb(255,255,255);
-}
-
-.box_margin{
-  width: 90%;
-  margin: 0 auto;
-}
-
-.box_title{
-  font-family: 'Helvetica';
-  padding: 10px 0;
-  border-bottom: 1px solid rgb(240,240,240)
-}
-
-.box_body{
-  padding: 10px 0 ;
-  background-color: rgb(249,249,250);
 }
 
 .Loading{
@@ -45,7 +24,20 @@ body{
 .PokemonPage{
   max-width: 1080px;
   margin: auto;
+  margin-top: 5px;
   display: flex;
+}
+
+@media (max-width: 1080px) {
+  .PokemonPage{
+    flex-direction: column;
+  }
+  .PokemonPage_left{
+    width: 100% !important; 
+  }
+  .PokemonPage_rigth{
+    width: 100% !important;
+  }
 }
 
 .PokemonPage_left{
@@ -71,6 +63,12 @@ body{
   font-size: 14px;
   font-family: 'Open Sans', sans-serif;
   margin: 10px 0;
+}
+
+.List_load{
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 
 .List_load_pokemon{
@@ -110,13 +108,20 @@ body{
   background-color: rgb(228, 91, 91);
 }
 
-.List_pokemons{
+.List{
+  max-height: calc(100vh - 39px - 62px );
+  overflow-y: scroll;
   background-color: rgb(249,249,250);
+}
+
+.List_pokemons{ 
+  /* height: 400px; */
+  
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  align-items: center;
+  
 }
 
 .List_load_button{
@@ -133,10 +138,7 @@ body{
 }
 
 .PokemonCard{
-  /* border: 1px solid rgb(184, 184, 184);
-  background: rgb(230, 230, 230);
-  min-width: 150px; */
-  /* align-items: center; */
+  max-height: 114px;
   display: flex;
   flex-direction : column;
   margin: 5px;
@@ -280,6 +282,7 @@ body{
   margin: 0;
   min-height: 40px;
   word-wrap: break-word;
+  text-align: center;
   font-size: 13px;
   color: gray; 
 }

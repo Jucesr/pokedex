@@ -1,0 +1,36 @@
+.Footer{
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgb(70, 70, 70);
+  
+}
+
+.Footer_margin{
+    max-width: 1080px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Footer_social{
+    padding: 5px;
+    text-align: center;  
+}
+
+.Footer_social img{
+    margin: 0 10px;
+}
+
+.Footer_develop{
+    color: white;
+    /* background-color: rgb(196, 196, 196); */
+    padding: 15px;
+    text-align: center;
+}
+
+.Footer_develop a {
+    outline: none;
+    color: white;
+    text-decoration: none;
+}

@@ -44,6 +44,13 @@ export default (state = initialState, action = {}) => {
       };
     }
 
+    case 'CLEAN_ERROR': {
+      return {
+        ...state,
+        error: null
+      }
+    }
+
     default: {
       return state;
     }

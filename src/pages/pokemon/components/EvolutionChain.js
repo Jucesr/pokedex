@@ -10,7 +10,7 @@ export const EvolutionChain = (props) => {
                 {
                     props.pokemons.length === 0 ? (
                         <div className="EvolutionChain_notfound">
-                            Not available
+                           <img src='../assets/loading.gif'></img>
                         </div>
                     )
                     :
@@ -28,7 +28,7 @@ export const EvolutionChain = (props) => {
                                         <img className="gif_loading_item" src='../assets/loading.gif'></img>
                                     : (
                                         <React.Fragment>
-                                            <img src={pokemon.sprites.front_default}/> {/*<img src={pokemon.picture[key]}/>  */}
+                                            <img src={pokemon.sprites.front_default}/>
                                             <p> {capitalize(pokemon.name)} </p>
                                         </React.Fragment>
                                         )

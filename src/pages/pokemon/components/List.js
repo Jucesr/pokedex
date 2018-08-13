@@ -13,8 +13,6 @@ export const List = (props) => {
                 <div className="box_margin">
                 <form onSubmit={props.loadPokemonByName} className='List_load_pokemon'>
                     <input
-                        //value={props.filter_name}
-                        //onChange={props.onNameFilterChange}
                         name="pokemon_name" 
                         placeholder="Load a pokemon by name!" 
                         type="text"
@@ -23,29 +21,35 @@ export const List = (props) => {
                 </form>
                     
                 </div>
-            </div>  
-            <div className="List_pokemons">
-                {
-                    props.pokemons.map( (pokemon, index) => (
-                        <Card 
-                            key={index}
-                            id={pokemon.id} 
-                            name={pokemon.name} 
-                            // picture="https://fakeimg.pl/96/"
-                            avatar={pokemon.sprites.front_default}
-                            stats={pokemon.stats} 
-                            onCardClick={props.onCardClick}
-                        /> 
-                        )
-                    )
-                }
-                {props.loading && 
-                    <img className="gif_loading_item" src='../assets/loading.gif'></img>
-                }
             </div>
+            <div className='List'>
+                <div className="List_pokemons">
+                    
+                    {
+                        props.pokemons.map( (pokemon, index) => (
+                            <Card 
+                                key={index}
+                                id={pokemon.id} 
+                                name={pokemon.name} 
+                                // picture="https://fakeimg.pl/96/"
+                                avatar={pokemon.sprites.front_default}
+                                stats={pokemon.stats} 
+                                onCardClick={e => {
+                                    props.onCardClick(e)
+                                }}
+                            /> 
+                            )
+                        )
+                    }
+                    {props.loading && 
+                        <img className="gif_loading_item" src='../assets/loading.gif'></img>
+                    }
+                </div>  
+            </div>  
+            
 
             {!props.loading  && 
-                //<div className="box_margin">
+                <div className="List_load">
                     <button 
                         className="List_load_button" 
                         onClick={e => {
@@ -53,7 +57,7 @@ export const List = (props) => {
                         }}
                     >Load more!
                     </button>
-                //</div>
+                </div>
             }
         </div>
     )
