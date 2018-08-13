@@ -10,6 +10,7 @@ import pokemonsReducer from './reducers/pokemons'
 import typesReducer from './reducers/types'
 import pokemonsSpeciesReducer from './reducers/pokemon_species'
 import evolutionChainReducer from './reducers/evolution_chains'
+import abilityReducer from './reducers/abilities'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const persistedState = loadState()
@@ -19,7 +20,8 @@ const store = createStore(
         pokemons: pokemonsReducer,
         types: typesReducer,
         pokemons_species: pokemonsSpeciesReducer,
-        evolution_chains: evolutionChainReducer
+        evolution_chains: evolutionChainReducer,
+        abilities: abilityReducer
     }),
     persistedState,
     composeEnhancers(applyMiddleware(thunk), applyMiddleware(callAPI))

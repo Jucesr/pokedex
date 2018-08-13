@@ -6,7 +6,7 @@ const initialState = {
 }
 
 export default (state = initialState, action = {}) => {
-  const { error, _id, type, response, lastID } = action;
+  const { error, type, response, lastID } = action;
 
   switch (type) {
 
@@ -37,7 +37,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         items: {
           ...state.items,
-          [`${_id}`]: {...response, lastFetched: Date.now()}
+          [`${response.id}`]: {...response, lastFetched: Date.now()}
         },
         error: null,
         isFetching: false

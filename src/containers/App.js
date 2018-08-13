@@ -2,7 +2,7 @@ import React from 'react'
 import {Provider} from 'react-redux';
 import store from '../store/configureStore';
 
-import PokemonPage from '../pages/pokemon/PokemonPage'
+import PokemonPage from '../pages/pokemon/index'
 import '../styles/core.css'
 
 class App extends React.Component {

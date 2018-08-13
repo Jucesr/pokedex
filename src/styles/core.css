@@ -8,6 +8,11 @@ body{
   background-color: #eaeaea;
 }
 
+.gif_loading_item{
+  width: 96px;
+  height: 96px;
+}
+
 .box{
   max-width: 100%;
   margin: 0 5px 10px 5px;
@@ -63,9 +68,46 @@ body{
   padding: 10px 10px; 
   color: gray;
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Open Sans', sans-serif;
   margin: 10px 0;
+}
+
+.List_load_pokemon{
+  display: flex;
+  height: 100%;
+}
+
+.List_load_pokemon input{
+  background: #eaeaea;
+  border: none;
+  width: 80%;
+  height: 42px;
+  margin: 0 auto;
+  padding: 10px 10px; 
+  color: gray;
+  display: block;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  margin: 10px 0;
+}
+
+.List_load_pokemon button{
+  width: 20%;
+  height: 42px; 
+  margin: auto 0 ;
+  padding: 10px 10px;
+  display: block;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgb(228,124,124);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.List_load_pokemon button:hover{
+  background-color: rgb(228, 91, 91);
 }
 
 .List_pokemons{
@@ -75,6 +117,19 @@ body{
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.List_load_button{
+  border: none;
+  background-color: rgb(228,124,124);
+  color: white;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.List_load_button:hover{
+  background-color: rgb(228, 91, 91);
 }
 
 .PokemonCard{
@@ -199,7 +254,7 @@ body{
   flex-wrap: wrap;
   align-content: center;
   align-items: center;
-  justify-content: space-between;
+  justify-content:space-evenly;
 }
 
 .EvolutionChain_notfound{
@@ -210,6 +265,10 @@ body{
 .EvolutionChain_item{
   flex-grow: 1;
   max-width: 25%;
+}
+
+.EvolutionChain_item:hover{
+  cursor: pointer;
 }
 
 .EvolutionChain_item div{
@@ -223,4 +282,22 @@ body{
   word-wrap: break-word;
   font-size: 13px;
   color: gray; 
+}
+
+.Ability_container{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: left;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Ability_item {
+  font-size: 14px;
+}
+
+.Ability_item strong{
+  text-align: right;
+  width: 100%;
 }
