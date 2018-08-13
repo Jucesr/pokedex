@@ -5,7 +5,7 @@ import store from '../store/configureStore';
 import PokemonPage from '../pages/pokemon/index'
 import { Footer } from "./Footer";
 
-import '../styles/Core.css'
+import '../styles/core.css'
 
 class App extends React.Component {
 
