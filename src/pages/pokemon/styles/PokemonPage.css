@@ -1,0 +1,37 @@
+.Loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .PokemonPage{
+    max-width: 1080px;
+    margin: auto;
+    margin-top: 5px;
+    display: flex;
+  }
+  
+  @media (max-width: 1080px) {
+    .PokemonPage{
+      flex-direction: column;
+    }
+    .PokemonPage_left{
+      width: 100% !important; 
+    }
+    .PokemonPage_rigth{
+      width: 100% !important;
+    }
+  }
+  
+  .PokemonPage_left{
+    width: 50%;
+  }
+  
+  .PokemonPage_rigth{
+    align-self: flex-start;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }

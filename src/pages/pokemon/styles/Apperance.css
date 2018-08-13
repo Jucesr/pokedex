@@ -1,0 +1,25 @@
+.Apperance_container{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .Apperance_item{
+    flex-grow: 1;
+    max-width: 25%;
+  }
+  
+  .Apperance_item div{
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .Apperance_item p{
+    margin: 0;
+    min-height: 40px;
+    word-wrap: break-word;
+    font-size: 13px;
+    color: gray; 
+  }

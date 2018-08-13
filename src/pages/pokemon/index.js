@@ -14,6 +14,18 @@ import {Appearance} from './components/Appearance'
 import { EvolutionChain } from "./components/EvolutionChain";
 import { Ability } from "./components/Ability";
 
+import './styles/Modal.css'
+import './styles/Footer.css'
+import './styles/Box.css'
+import './styles/List.css'
+import './styles/Card.css'
+import './styles/Stats.css'
+import './styles/BasicInfo.css'
+import './styles/Apperance.css'
+import './styles/EvolutionChain.css'
+import './styles/Ability.css'
+import './styles/PokemonPage.css'
+
 import {loadPokemonFullData, loadPokemons, loadPokemonTypes, cleanError} from '../../store/actions/pokemons'
 
 class PokemonPage extends React.Component {

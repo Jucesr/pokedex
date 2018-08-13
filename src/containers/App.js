@@ -4,10 +4,8 @@ import store from '../store/configureStore';
 
 import PokemonPage from '../pages/pokemon/index'
 import { Footer } from "./Footer";
-import '../styles/core.css'
-import '../styles/modal.css'
-import '../styles/footer.css'
-import '../styles/box.css'
+
+import '../styles/Core.css'
 
 class App extends React.Component {
 
