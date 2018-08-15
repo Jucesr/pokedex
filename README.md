@@ -11,6 +11,7 @@ https://jo-pokedex.herokuapp.com/
 * [Visual Studio](https://code.visualstudio.com/) - The text editor
 * [Postman](https://www.getpostman.com/) - API Development Environment
 * [Flaticon](https://www.flaticon.com/) - Free Icon Database
+* [Heroku](https://www.heroku.com/) - Cloud Application Platform
 
 
 See also the list of [dependencies](https://github.com/Jucesr/pokedex/blob/master/package.json) that were used in this project.
