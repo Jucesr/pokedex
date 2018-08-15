@@ -96,10 +96,10 @@ class PokemonPage extends React.Component {
   } 
 
   onNameFilterChange = e => {
-    let value = e.target.value
-    this.setState(prevState => ({
-      filter_name: value
-    }))
+    const filter_name = e.target.value;
+    if (filter_name.match(/^[a-zA-Z]+$/) || filter_name.length == 0) {
+      this.setState(() => ({ filter_name }));
+    }
   }
 
   onTypeFilterChange = options => {
