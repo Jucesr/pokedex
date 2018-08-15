@@ -231,7 +231,7 @@ export const loadPokemonSpecie = (_id) => {
           }
         )
         .then(response => {
-          resolve(pick(response, [
+          let specie = pick(response, [
             'base_happiness',
             'name',
             'is_baby',
@@ -239,7 +239,19 @@ export const loadPokemonSpecie = (_id) => {
             'evolves_from_species',
             'flavor_text_entries',
             'capture_rate'
-          ])) 
+          ])
+          //Take the first english description
+          specie.description = "No description available"
+          for (let index = 0; index < specie.flavor_text_entries.length; index++) {
+            const element = specie.flavor_text_entries[index];
+            if(element.language.name == 'en'){
+              specie.description = element.flavor_text
+              break;
+            }
+          }
+          delete specie.flavor_text_entries
+          resolve(specie)
+           
         })
           
       })
